@@ -6,6 +6,86 @@
   object-position: center;
 }
 
+@mixin buttonMixin {
+  width: 17rem;
+  height: 7rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 1.1rem;
+  cursor: pointer;
+  @include respond(mobile) {
+    font-size: 2.44vw;
+    padding: 1.34vw;
+    width: 20.7vw;
+    height: 8.52vw;
+    border-radius: 0.61vw;
+  }
+}
+
+@mixin optionLabelMixin {
+  background-color: transparent;
+  position: relative;
+  transition: opacity 0.5s ease-in-out;
+  &:hover {
+    &::before {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+  }
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  &::before {
+    z-index: -1;
+    opacity: 0;
+    top: 25%;
+    bottom: 25%;
+    background-color: var(--color-secondary);
+  }
+  &::after {
+    z-index: -2;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    background-color: var(--color-primary);
+  }
+}
+
+@mixin modalBg {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(196, 196, 196, 0.4);
+  transition: all 0.5s ease-in-out;
+  &[data-hidden='false'] {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+@mixin modalCloseBtn {
+  height: 3rem;
+  cursor: pointer;
+  @include respond(mobile) {
+    height: 3.66vw;
+  }
+}
+
 /*
     min-width and max-width breakpoint mixins definition
     $break-value : min/max value for which the mixin will be applie in em

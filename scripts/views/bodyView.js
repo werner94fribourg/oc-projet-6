@@ -11,8 +11,7 @@ class BodyView extends PageComponentView {
    * @author Werner Schmid
    */
   constructor(errorMessage) {
-    super(document.querySelector('body'), errorMessage);
-    this._clearContent = false;
+    super(document.querySelector('body'), errorMessage, false);
   }
 
   /**
@@ -24,9 +23,10 @@ class BodyView extends PageComponentView {
    */
   addHandlerClick(handler) {
     this._parentElement.addEventListener('click', e => {
-      e.preventDefault();
       const link = e.target.closest('a');
       if (!link) return;
+
+      e.preventDefault();
 
       handler(link.pathname);
     });

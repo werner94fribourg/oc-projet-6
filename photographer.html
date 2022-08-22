@@ -45,45 +45,489 @@
       </header>
       <section class="main__photographer-medias">
         <form action="/" class="main__photographer-filter-form">
-          <label for="filter" class="main__photographer-filter">
-            Trier par</label
+          <label
+            class="main__photographer-filter-label"
+            id="main__photographer-filter-label"
           >
-          <select
-            name="filter"
-            id="filter"
+            Trier par
+          </label>
+          <div
+            role="radiogroup"
+            aria-labelledby="main__photographer-filter-label"
             class="main__photographer-filter-input"
           >
-            <option value="0" selected class="main__photographer-filter-option">
-              Popularité
-            </option>
-            <option value="1" class="main__photographer-filter-option">
-              Date
-            </option>
-            <option value="2" class="main__photographer-filter-option">
-              Titre
-            </option>
-          </select>
+            <span
+              class="main__photographer-filter-choosen-option"
+              aria-hidden="true"
+              >Popularité</span
+            >
+            <div
+              class="main__photographer-filter-option-display"
+              aria-hidden="true"
+            >
+              <label
+                for="option-0"
+                class="main__photographer-filter-option-label"
+                >Popularité</label
+              >
+              <input
+                id="option-0"
+                role="radio"
+                tabindex="0"
+                aria-checked="true"
+                type="radio"
+                value="0"
+                name="filter"
+                checked
+                class="main__photographer-filter-option-choice"
+              />
+              <label
+                for="option-1"
+                class="main__photographer-filter-option-label"
+                >Date</label
+              >
+              <input
+                id="option-1"
+                role="radio"
+                tabindex="-1"
+                aria-checked="false"
+                type="radio"
+                value="1"
+                name="filter"
+                class="main__photographer-filter-option-choice"
+              />
+              <label
+                for="option-2"
+                class="main__photographer-filter-option-label"
+                >Titre</label
+              >
+              <input
+                id="option-2"
+                role="radio"
+                tabindex="-1"
+                aria-checked="false"
+                type="radio"
+                value="2"
+                name="filter"
+                class="main__photographer-filter-option-choice"
+              />
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="white"
+              class="bi bi-chevron-down"
+              viewBox="0 0 16 16"
+              role="img"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </div>
         </form>
-      </section>
-    </main>
-    <div class="form-modal">
-      <header class="form-modal__header">
-        <h2 class="form-modal__title">Contactez-moi</h2>
-        <img
-          src="assets/icons/close.svg"
-          class="form-modal__close-btn"
-          onclick="closeModal()"
-        />
-      </header>
-      <form class="form-modal__form">
-        <div class="form-modal__input">
-          <label class="form-modal__input-label">Prénom</label>
-          <input
-            class="form-modal__input-field form-modal__input-field--text"
-          />
+        <div class="main__medias-list" role="list">
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/623534343"
+              class="card-media__link"
+              data-id="623534343"
+              role="link"
+              aria-labelledby="card-media__title--623534343"
+            >
+              <img
+                src="assets/works/photos/Travel_Lonesome.jpg"
+                alt="Lonesome, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--623534343">
+                Lonesome
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >88</span
+                >
+                <a
+                  href="/media/623534343/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/625025343"
+              class="card-media__link"
+              data-id="625025343"
+              role="link"
+              aria-labelledby="card-media__title--625025343"
+            >
+              <img
+                src="assets/works/photos/Travel_HillsideColor.jpg"
+                alt="Hillside Color, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--625025343">
+                Hillside Color
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >85</span
+                >
+                <a
+                  href="/media/625025343/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/2525345343"
+              class="card-media__link"
+              data-id="2525345343"
+              role="link"
+              aria-labelledby="card-media__title--2525345343"
+            >
+              <img
+                src="assets/works/photos/Portrait_Wednesday.jpg"
+                alt="Wednesday Potrait, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--2525345343">
+                Wednesday Potrait
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >34</span
+                >
+                <a
+                  href="/media/2525345343/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/2523434634"
+              class="card-media__link"
+              data-id="2523434634"
+              role="link"
+              aria-labelledby="card-media__title--2523434634"
+            >
+              <img
+                src="assets/works/photos/Portrait_Nora.jpg"
+                alt="Nora Portrait, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--2523434634">
+                Nora Portrait
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >63</span
+                >
+                <a
+                  href="/media/2523434634/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/398847109"
+              class="card-media__link"
+              data-id="398847109"
+              role="link"
+              aria-labelledby="card-media__title--398847109"
+            >
+              <img
+                src="assets/works/photos/Portrait_Background.jpg"
+                alt="Raw Black Portrait, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--398847109">
+                Raw Black Portrait
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >55</span
+                >
+                <a
+                  href="/media/398847109/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/2534342"
+              class="card-media__link"
+              data-id="2534342"
+              role="link"
+              aria-labelledby="card-media__title--2534342"
+            >
+              <img
+                src="assets/works/photos/Event_SeasideWedding.jpg"
+                alt="Seaside Wedding, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--2534342">
+                Seaside Wedding
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >25</span
+                >
+                <a
+                  href="/media/2534342/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="/media/952343423"
+              class="card-media__link"
+              data-id="952343423"
+              role="link"
+              aria-labelledby="card-media__title--952343423"
+            >
+              <video
+                class="card-media__img"
+                role="img"
+                aria-label="Tricks in te air, closeup view"
+              >
+                <source
+                  src="assets/works/videos/Sport_Tricks_in_the_air.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--952343423">
+                Tricks in te air
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >150</span
+                >
+                <a
+                  href="/media/952343423/like"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                >
+                  <svg
+                    class="icon-heart icon-heart--filled"
+                    role="img"
+                    aria-label="likes"
+                  >
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
-        <button class="form-modal__submit-btn btn">Envoyer</button>
-      </form>
+      </section>
+      <footer class="main__photographer-footer">
+        <div class="main__photographer-likes">
+          <span class="main__photographer-nb-likes" aria-label="Nombre de likes"
+            >297 081</span
+          >
+          <svg
+            class="icon-heart icon-heart--filled"
+            role="img"
+            aria-hidden="true"
+          >
+            <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+          </svg>
+        </div>
+        <span class="main__photographer-price" aria-label="Nombre de likes"
+          >300€ / jour</span
+        >
+      </footer>
+    </main>
+    <div class="form-modal__background">
+      <div
+        class="form-modal"
+        role="dialog"
+        aria-labelledby="#form-modal__title"
+        aria-modal="true"
+      >
+        <header class="form-modal__header">
+          <h2 id="form-modal__title" class="form-modal__title">
+            <span class="form-modal__title-contact">Contactez-moi</span>
+            <span class="form-modal__title-name">Mimi Keel</span>
+          </h2>
+          <img
+            src="assets/icons/close.svg"
+            class="form-modal__close-btn"
+            onclick="closeModal()"
+            aria-label="Close"
+          />
+        </header>
+        <form class="form-modal__form">
+          <div class="form-modal__input">
+            <label for="#firstname" class="form-modal__input-label"
+              >Prénom</label
+            >
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              class="form-modal__input-field form-modal__input-field--text"
+            />
+          </div>
+          <div class="form-modal__input">
+            <label for="#lastname" class="form-modal__input-label">Nom</label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              class="form-modal__input-field form-modal__input-field--text"
+            />
+          </div>
+          <div class="form-modal__input">
+            <label for="#email" class="form-modal__input-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-modal__input-field form-modal__input-field--text"
+            />
+          </div>
+          <div class="form-modal__input">
+            <label for="#message" class="form-modal__input-label"
+              >Votre message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="form-modal__input-field form-modal__input-field--textarea"
+            ></textarea>
+          </div>
+          <button class="form-modal__submit-btn btn">Envoyer</button>
+        </form>
+      </div>
+    </div>
+    <div class="lightbox-modal__background">
+      <div
+        class="lightbox-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Vue rapprochée de l'image"
+      >
+        <header class="lightbox-modal__header">
+          <img
+            src="assets/icons/close-red.svg"
+            class="lightbox-modal__close-btn"
+            aria-label="Close"
+          />
+          <a
+            href="mediaIdPreviousMedia"
+            class="lightbox-modal__navigation lightbox-modal__previous-btn"
+            aria-label="Image précédente"
+            >&#9001;</a
+          >
+          <a
+            href="mediaIdNextMedia"
+            class="lightbox-modal__navigation lightbox-modal__next-btn"
+            aria-label="Image suivante"
+            >&#9002;</a
+          >
+        </header>
+        <div class="lightbox-modal__content">
+          <img
+            class="lightbox-modal__media"
+            src="assets/works/photos/Event_SeasideWedding.jpg"
+            alt="Nom de limage"
+          />
+          <h2 class="lightbox-modal__title">Seaside</h2>
+        </div>
+      </div>
     </div>
   </body>
 </html>

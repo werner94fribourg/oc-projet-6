@@ -1,9 +1,13 @@
 import { PROFILE_PICTURES_FOLDER } from '../utils/config';
+import { mediaFactory } from './media';
 
-export const photographerFactory = data => {
+export const photographerFactory = ({ data, medias }) => {
   const { id, name, portrait, city, country, tagline, price } = data;
 
   const picture = `${PROFILE_PICTURES_FOLDER}${portrait}`;
+  const nbLikes = medias.reduce((sum, media) => sum + media.likes, 0);
+
+  const mediasFactory = mediaFactory(medias);
 
   const getUserCard = () => {
     const markup = `
@@ -44,5 +48,60 @@ export const photographerFactory = data => {
     `;
     return markup;
   };
-  return { name, picture, getUserCard, getUserHeader };
+  const getFormModal = () => {
+    const markup = `
+    <div class="form-modal__background">
+      <div class="form-modal" role="dialog" aria-labelledby="#form-modal__title" aria-modal="true">
+        <header class="form-modal__header">
+          <h2 id="form-modal__title" class="form-modal__title">
+            <span class="form-modal__title-contact">Contactez-moi</span>
+            <span class="form-modal__title-name">${name}</span>
+          </h2>
+          <img src="assets/icons/close.svg" class="form-modal__close-btn" aria-label="Close" />
+        </header>
+        <form action="/contact" method="POST" class="form-modal__form">
+          <div class="form-modal__input">
+            <label for="#firstname" class="form-modal__input-label">Prénom</label>
+            <input type="text" id="firstname" name="firstname" class="form-modal__input-field form-modal__input-field--text" />
+          </div>
+          <div class="form-modal__input">
+            <label for="#lastname" class="form-modal__input-label">Nom</label>
+            <input type="text" id="lastname" name="lastname" class="form-modal__input-field form-modal__input-field--text" />
+          </div>
+          <div class="form-modal__input">
+            <label for="#email" class="form-modal__input-label">Email</label>
+            <input type="email" id="email" name="email" class="form-modal__input-field form-modal__input-field--text" />
+          </div>
+          <div class="form-modal__input">
+            <label for="#message" class="form-modal__input-label">Votre message</label>
+            <textarea id="message" name="message" rows="4" class="form-modal__input-field form-modal__input-field--textarea"></textarea>
+          </div>
+          <button type="submit" class="form-modal__submit-btn btn">Envoyer</button>
+        </form>
+      </div>
+    </div>
+      `;
+    return markup;
+  };
+  const getUserFooter = () => {
+    const markup = `
+      <div class="main__photographer-likes">
+        <span class="main__photographer-nb-likes" aria-label="Nombre de likes">${nbLikes}</span>
+        <svg class="icon-heart icon-heart--filled" role="img" aria-hidden="true">
+          <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+        </svg>
+      </div>
+      <span class="main__photographer-price" aria-label="Tarif journalier">${price}€ / jour</span>
+    `;
+    return markup;
+  };
+  return {
+    name,
+    picture,
+    getUserCard,
+    getUserHeader,
+    getFormModal,
+    mediasFactory,
+    getUserFooter,
+  };
 };

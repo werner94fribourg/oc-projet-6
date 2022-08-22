@@ -10,10 +10,10 @@ class View {
    * @returns {Object} The new View instance
    * @author Werner Schmid
    */
-  constructor(parentElement, errorMessage) {
+  constructor(parentElement, errorMessage, clearContent = true) {
     this._parentElement = parentElement;
     this._errorMessage = errorMessage;
-    this._clearContent = true;
+    this._clearContent = clearContent;
   }
 
   /**
@@ -23,7 +23,7 @@ class View {
    * @this {Object} The current View instance calling the render function
    * @author Werner Schmid
    */
-  render(data) {
+  render(data, begin = true) {
     // Check the passed data and render an error message if the data isn't set
     if (!this._checkData(data)) return;
 
@@ -32,7 +32,13 @@ class View {
     // Clear the content of the View
     this._clear();
     // Render the new markup in the parentElement in the View
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.insertAdjacentHTML(
+      begin ? 'afterbegin' : 'beforeend',
+      markup
+    );
+
+    // _postRender() : template method used to do some works after the View has been rendered
+    this._postRender();
   }
 
   /**
@@ -103,6 +109,13 @@ class View {
   _generateMarkup() {
     return '';
   }
+
+  /**
+   * Template method used to do something after the markup has been rendered
+   * @returns {undefined} No returned value by the function
+   * @author Werner Schmid
+   */
+  _postRender() {}
 
   /**
    * Returns the parent element of the view

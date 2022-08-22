@@ -11,34 +11,25 @@ class FormModalView extends PageComponentView {
    * @author Werner Schmid
    */
   constructor(errorMessage) {
-    super(document.querySelector('body'), errorMessage);
-    this._clearContent = false;
+    super(document.querySelector('body'), errorMessage, false);
   }
 
   /**
    * @override
    */
   _generateMarkup() {
-    return `
-    <div class="form-modal">
-      <header class="form-modal__header">
-        <h2 class="form-modal__title">Contactez-moi</h2>
-        <img
-          src="assets/icons/close.svg"
-          class="form-modal__close-btn"
-        />
-      </header>
-      <form class="form-modal__form">
-        <div class="form-modal__input">
-          <label class="form-modal__input-label">Prénom</label>
-          <input
-            class="form-modal__input-field form-modal__input-field--text"
-          />
-        </div>
-        <button class="form-modal__submit-btn btn">Envoyer</button>
-      </form>
-    </div>
-      `;
+    return this._photographerFactory.getFormModal();
+  }
+
+  /**
+   * Store the photographer factory into the view
+   * @param {Object} factory the photographer factory
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current PhotographerMainView instance calling the addHandlerClick function
+   * @author Werner Schmid
+   */
+  setPhotographerFactory(factory) {
+    this._photographerFactory = factory;
   }
 
   /**
@@ -55,6 +46,31 @@ class FormModalView extends PageComponentView {
 
       handler();
     });
+  }
+
+  /**
+   * Function used to handle the submission of the form contained in the View
+   * @param {function} handler Function that will be called when the click event happens to the form
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current FormModalView instance calling the addHandlerClick function
+   * @author Werner Schmid
+   */
+  addHandlerSubmit(handler) {
+    this._parentElement
+      .querySelector('.form-modal__form')
+      .addEventListener('submit', event => {
+        event.preventDefault();
+        const contactForm = event.target;
+        if (!contactForm) return;
+
+        const formElements = Array.from(contactForm.elements).filter(
+          element => element.type !== 'submit'
+        );
+        const datas = formElements.map(formElement => {
+          return { name: formElement.name, value: formElement.value };
+        });
+        handler(datas);
+      });
   }
 }
 
