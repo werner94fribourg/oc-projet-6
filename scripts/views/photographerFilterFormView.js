@@ -74,7 +74,7 @@ class PhotographerFilterFormView extends PhotographerPageComponentView {
   _generateMarkup() {
     return `
     <label class="main__photographer-filter-label" id="main__photographer-filter-label">Trier par</label>
-    <div role="radiogroup" aria-labelledby="main__photographer-filter-label" class="main__photographer-filter-input">
+    <div role="radiogroup" aria-describedby="main__photographer-filter-label" class="main__photographer-filter-input">
       <span class="main__photographer-filter-choosen-option" aria-hidden="true">Popularité</span>
       <div class="main__photographer-filter-option-display" aria-hidden="true">
         <label for="option-0" class="main__photographer-filter-option-label">Popularité</label>

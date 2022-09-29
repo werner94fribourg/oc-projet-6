@@ -19,12 +19,12 @@ export const photographerFactory = ({ data, medias }) => {
       </a>
       <h2 class="hidden">${name}</h2>
       <p class="card__description">
-        <span class="card__location" aria-label="Location">
+        <span class="card__location" aria-label="Location: ${city}, ${country}">
           <span class="card__city">${city}</span>,
           <span class="card__country">${country}</span>
         </span>
-        <span class="card__tagline" aria-label="Slogan">${tagline}</span>
-        <span class="card__price" aria-label="Prix">
+        <span class="card__tagline" aria-label="Slogan: ${tagline}">${tagline}</span>
+        <span class="card__price" aria-label="Prix: ${price}€">
           <span class="card__price-value">${price}</span>
           <span class="card__price-currency">€</span>/jour
         </span>
@@ -38,11 +38,11 @@ export const photographerFactory = ({ data, medias }) => {
       <div class="main__photographer-text">
         <h1 class="main__photographer-title">${name}</h1>
         <p class="main__photographer-description">
-          <span class="main__photographer-location" aria-label="location">
+          <span class="main__photographer-location" aria-label="Location: ${city}, ${country}">
             <span class="main__photographer-city">${city}</span>,
             <span class="main__photographer-country">${country}</span>
           </span>
-          <span class="main__photographer-tagline" aria-label="Slogan">${tagline}</span>
+          <span class="main__photographer-tagline" aria-label="Slogan: ${tagline}">${tagline}</span>
         </p>
       </div>
     `;
@@ -51,29 +51,29 @@ export const photographerFactory = ({ data, medias }) => {
   const getFormModal = () => {
     const markup = `
     <div class="form-modal__background">
-      <div class="form-modal" role="dialog" aria-labelledby="#form-modal__title" aria-modal="true">
+      <div class="form-modal" role="dialog" aria-describedby="form-modal__title" aria-modal="true" aria-hidden="true">
         <header class="form-modal__header">
           <h2 id="form-modal__title" class="form-modal__title">
             <span class="form-modal__title-contact">Contactez-moi</span>
             <span class="form-modal__title-name">${name}</span>
           </h2>
-          <img src="assets/icons/close.svg" class="form-modal__close-btn" aria-label="Close" />
+          <img src="assets/icons/close.svg" class="form-modal__close-btn" aria-label="Fermer" />
         </header>
         <form action="/contact" method="POST" class="form-modal__form">
           <div class="form-modal__input">
-            <label for="#firstname" class="form-modal__input-label">Prénom</label>
+            <label for="firstname" class="form-modal__input-label">Prénom</label>
             <input type="text" id="firstname" name="firstname" class="form-modal__input-field form-modal__input-field--text" />
           </div>
           <div class="form-modal__input">
-            <label for="#lastname" class="form-modal__input-label">Nom</label>
+            <label for="lastname" class="form-modal__input-label">Nom</label>
             <input type="text" id="lastname" name="lastname" class="form-modal__input-field form-modal__input-field--text" />
           </div>
           <div class="form-modal__input">
-            <label for="#email" class="form-modal__input-label">Email</label>
+            <label for="email" class="form-modal__input-label">Email</label>
             <input type="email" id="email" name="email" class="form-modal__input-field form-modal__input-field--text" />
           </div>
           <div class="form-modal__input">
-            <label for="#message" class="form-modal__input-label">Votre message</label>
+            <label for="message" class="form-modal__input-label">Votre message</label>
             <textarea id="message" name="message" rows="4" class="form-modal__input-field form-modal__input-field--textarea"></textarea>
           </div>
           <button type="submit" class="form-modal__submit-btn btn">Envoyer</button>
@@ -86,12 +86,12 @@ export const photographerFactory = ({ data, medias }) => {
   const getUserFooter = () => {
     const markup = `
       <div class="main__photographer-likes">
-        <span class="main__photographer-nb-likes" aria-label="Nombre de likes">${nbLikes}</span>
+        <span class="main__photographer-nb-likes" aria-label="Nombre de likes: ${nbLikes}">${nbLikes}</span>
         <svg class="icon-heart icon-heart--filled" role="img" aria-hidden="true">
           <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
         </svg>
       </div>
-      <span class="main__photographer-price" aria-label="Tarif journalier">${price}€ / jour</span>
+      <span class="main__photographer-price" aria-label="Tarif journalier: ${price}€ par jour">${price}€ / jour</span>
     `;
     return markup;
   };

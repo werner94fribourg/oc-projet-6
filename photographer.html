@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" data-lt-installed="true">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      href="https://fonts.googleapis.com/css?family=DM+Sans&amp;display=swap"
       rel="stylesheet"
     />
-    <title>Fisheye - photographe</title>
+    <title>Fisheye</title>
   </head>
-  <body>
-    <header class="header" role="banner" data-main-page="false">
+  <body cz-shortcut-listen="true">
+    <header class="header" role="banner" data--main-page="false">
       <a class="header__index-link" href="/" aria-label="Fisheye Home page">
         <img
           role="img"
@@ -22,7 +22,7 @@
         />
       </a>
     </header>
-    <main class="main" role="main" data-main-page="true">
+    <main class="main" role="main" data--main-page="false">
       <header class="main__photographer-infos">
         <div class="main__photographer-text">
           <h1 class="main__photographer-title">Mimi Keel</h1>
@@ -31,16 +31,23 @@
               <span class="main__photographer-city">London</span>,
               <span class="main__photographer-country">UK</span>
             </span>
-            <span class="main__photographer-tagline" aria-label="Slogan">
-              Voir le beau dans le quotidien
-            </span>
+            <span class="main__photographer-tagline" aria-label="Slogan"
+              >Voir le beau dans le quotidien</span
+            >
           </p>
         </div>
-        <button class="btn btn--open">Contactez-moi</button>
+        <button
+          class="btn btn--open"
+          data--main-page="false"
+          data-first-focus="true"
+        >
+          Contactez-moi
+        </button>
         <img
-          src="/assets/photographers/MimiKeel.jpg"
+          src="assets/photographers/MimiKeel.jpg"
           alt="Mimi Keel"
           class="main__photographer-image"
+          aria-hidden="true"
         />
       </header>
       <section class="main__photographer-medias">
@@ -48,12 +55,11 @@
           <label
             class="main__photographer-filter-label"
             id="main__photographer-filter-label"
+            >Trier par</label
           >
-            Trier par
-          </label>
           <div
             role="radiogroup"
-            aria-labelledby="main__photographer-filter-label"
+            aria-describedby="main__photographer-filter-label"
             class="main__photographer-filter-input"
           >
             <span
@@ -78,7 +84,7 @@
                 type="radio"
                 value="0"
                 name="filter"
-                checked
+                checked=""
                 class="main__photographer-filter-option-choice"
               />
               <label
@@ -125,14 +131,62 @@
               <path
                 fill-rule="evenodd"
                 d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+              ></path>
             </svg>
           </div>
+          <input
+            type="submit"
+            class="main__photographer-submit-btn"
+            aria-hidden="true"
+          />
         </form>
         <div class="main__medias-list" role="list">
           <article class="card-media" role="listitem">
             <a
-              href="/media/623534343"
+              href="#"
+              class="card-media__link"
+              data-id="5234343"
+              role="link"
+              aria-labelledby="card-media__title--5234343"
+            >
+              <video
+                class="card-media__img"
+                role="img"
+                aria-label="Wild horses in the mountains, closeup view"
+              >
+                <source
+                  src="assets/works//videos/Animals_Wild_Horses_in_the_mountains.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--5234343">
+                Wild horses in the mountains
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >142</span
+                >
+                <a
+                  href="#"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                  data-id="5234343"
+                  data-liked="false"
+                >
+                  <svg class="icon-heart" role="img" aria-label="likes">
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="#"
               class="card-media__link"
               data-id="623534343"
               role="link"
@@ -153,16 +207,14 @@
                   >88</span
                 >
                 <a
-                  href="/media/623534343/like"
+                  href="#"
                   class="card-media__like"
                   role="link"
                   aria-label="Liker l'image"
+                  data-id="623534343"
+                  data-liked="false"
                 >
-                  <svg
-                    class="icon-heart icon-heart--filled"
-                    role="img"
-                    aria-label="likes"
-                  >
+                  <svg class="icon-heart" role="img" aria-label="likes">
                     <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
                   </svg>
                 </a>
@@ -171,7 +223,7 @@
           </article>
           <article class="card-media" role="listitem">
             <a
-              href="/media/625025343"
+              href="#"
               class="card-media__link"
               data-id="625025343"
               role="link"
@@ -192,16 +244,14 @@
                   >85</span
                 >
                 <a
-                  href="/media/625025343/like"
+                  href="#"
                   class="card-media__like"
                   role="link"
                   aria-label="Liker l'image"
+                  data-id="625025343"
+                  data-liked="false"
                 >
-                  <svg
-                    class="icon-heart icon-heart--filled"
-                    role="img"
-                    aria-label="likes"
-                  >
+                  <svg class="icon-heart" role="img" aria-label="likes">
                     <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
                   </svg>
                 </a>
@@ -210,37 +260,35 @@
           </article>
           <article class="card-media" role="listitem">
             <a
-              href="/media/2525345343"
+              href="#"
               class="card-media__link"
-              data-id="2525345343"
+              data-id="23523434"
               role="link"
-              aria-labelledby="card-media__title--2525345343"
+              aria-labelledby="card-media__title--23523434"
             >
               <img
-                src="assets/works/photos/Portrait_Wednesday.jpg"
-                alt="Wednesday Potrait, closeup view"
+                src="assets/works/photos/Event_BenevidesWedding.jpg"
+                alt="Benevides Wedding, closeup view"
                 class="card-media__img"
               />
             </a>
             <div class="card-media__description">
-              <h3 class="card-media__title" id="card-media__title--2525345343">
-                Wednesday Potrait
+              <h3 class="card-media__title" id="card-media__title--23523434">
+                Benevides Wedding
               </h3>
               <div class="card-media__like-description">
                 <span class="card-media__nb-likes" aria-label="Nombre de likes"
-                  >34</span
+                  >77</span
                 >
                 <a
-                  href="/media/2525345343/like"
+                  href="#"
                   class="card-media__like"
                   role="link"
                   aria-label="Liker l'image"
+                  data-id="23523434"
+                  data-liked="false"
                 >
-                  <svg
-                    class="icon-heart icon-heart--filled"
-                    role="img"
-                    aria-label="likes"
-                  >
+                  <svg class="icon-heart" role="img" aria-label="likes">
                     <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
                   </svg>
                 </a>
@@ -249,7 +297,7 @@
           </article>
           <article class="card-media" role="listitem">
             <a
-              href="/media/2523434634"
+              href="#"
               class="card-media__link"
               data-id="2523434634"
               role="link"
@@ -270,16 +318,14 @@
                   >63</span
                 >
                 <a
-                  href="/media/2523434634/like"
+                  href="#"
                   class="card-media__like"
                   role="link"
                   aria-label="Liker l'image"
+                  data-id="2523434634"
+                  data-liked="false"
                 >
-                  <svg
-                    class="icon-heart icon-heart--filled"
-                    role="img"
-                    aria-label="likes"
-                  >
+                  <svg class="icon-heart" role="img" aria-label="likes">
                     <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
                   </svg>
                 </a>
@@ -288,7 +334,44 @@
           </article>
           <article class="card-media" role="listitem">
             <a
-              href="/media/398847109"
+              href="#"
+              class="card-media__link"
+              data-id="95234343"
+              role="link"
+              aria-labelledby="card-media__title--95234343"
+            >
+              <img
+                src="assets/works/photos/Animals_Rainbow.jpg"
+                alt="Rainbow Bird, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--95234343">
+                Rainbow Bird
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >59</span
+                >
+                <a
+                  href="#"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                  data-id="95234343"
+                  data-liked="false"
+                >
+                  <svg class="icon-heart" role="img" aria-label="likes">
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="#"
               class="card-media__link"
               data-id="398847109"
               role="link"
@@ -309,10 +392,49 @@
                   >55</span
                 >
                 <a
-                  href="/media/398847109/like"
+                  href="#"
                   class="card-media__like"
                   role="link"
                   aria-label="Liker l'image"
+                  data-id="398847109"
+                  data-liked="false"
+                >
+                  <svg class="icon-heart" role="img" aria-label="likes">
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="#"
+              class="card-media__link"
+              data-id="65235234"
+              role="link"
+              aria-labelledby="card-media__title--65235234"
+            >
+              <img
+                src="assets/works/photos/Event_PintoWedding.jpg"
+                alt="Boulder Wedding, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--65235234">
+                Boulder Wedding
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >53</span
+                >
+                <a
+                  href="#"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                  data-id="65235234"
+                  data-liked="true"
                 >
                   <svg
                     class="icon-heart icon-heart--filled"
@@ -327,7 +449,44 @@
           </article>
           <article class="card-media" role="listitem">
             <a
-              href="/media/2534342"
+              href="#"
+              class="card-media__link"
+              data-id="2525345343"
+              role="link"
+              aria-labelledby="card-media__title--2525345343"
+            >
+              <img
+                src="assets/works/photos/Portrait_Wednesday.jpg"
+                alt="Wednesday Potrait, closeup view"
+                class="card-media__img"
+              />
+            </a>
+            <div class="card-media__description">
+              <h3 class="card-media__title" id="card-media__title--2525345343">
+                Wednesday Potrait
+              </h3>
+              <div class="card-media__like-description">
+                <span class="card-media__nb-likes" aria-label="Nombre de likes"
+                  >34</span
+                >
+                <a
+                  href="#"
+                  class="card-media__like"
+                  role="link"
+                  aria-label="Liker l'image"
+                  data-id="2525345343"
+                  data-liked="false"
+                >
+                  <svg class="icon-heart" role="img" aria-label="likes">
+                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="card-media" role="listitem">
+            <a
+              href="#"
               class="card-media__link"
               data-id="2534342"
               role="link"
@@ -348,61 +507,14 @@
                   >25</span
                 >
                 <a
-                  href="/media/2534342/like"
+                  href="#"
                   class="card-media__like"
                   role="link"
                   aria-label="Liker l'image"
+                  data-id="2534342"
+                  data-liked="false"
                 >
-                  <svg
-                    class="icon-heart icon-heart--filled"
-                    role="img"
-                    aria-label="likes"
-                  >
-                    <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-          <article class="card-media" role="listitem">
-            <a
-              href="/media/952343423"
-              class="card-media__link"
-              data-id="952343423"
-              role="link"
-              aria-labelledby="card-media__title--952343423"
-            >
-              <video
-                class="card-media__img"
-                role="img"
-                aria-label="Tricks in te air, closeup view"
-              >
-                <source
-                  src="assets/works/videos/Sport_Tricks_in_the_air.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </a>
-            <div class="card-media__description">
-              <h3 class="card-media__title" id="card-media__title--952343423">
-                Tricks in te air
-              </h3>
-              <div class="card-media__like-description">
-                <span class="card-media__nb-likes" aria-label="Nombre de likes"
-                  >150</span
-                >
-                <a
-                  href="/media/952343423/like"
-                  class="card-media__like"
-                  role="link"
-                  aria-label="Liker l'image"
-                >
-                  <svg
-                    class="icon-heart icon-heart--filled"
-                    role="img"
-                    aria-label="likes"
-                  >
+                  <svg class="icon-heart" role="img" aria-label="likes">
                     <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
                   </svg>
                 </a>
@@ -414,7 +526,7 @@
       <footer class="main__photographer-footer">
         <div class="main__photographer-likes">
           <span class="main__photographer-nb-likes" aria-label="Nombre de likes"
-            >297 081</span
+            >681</span
           >
           <svg
             class="icon-heart icon-heart--filled"
@@ -424,8 +536,8 @@
             <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
           </svg>
         </div>
-        <span class="main__photographer-price" aria-label="Nombre de likes"
-          >300€ / jour</span
+        <span class="main__photographer-price" aria-label="Tarif journalier"
+          >400€ / jour</span
         >
       </footer>
     </main>
@@ -444,11 +556,10 @@
           <img
             src="assets/icons/close.svg"
             class="form-modal__close-btn"
-            onclick="closeModal()"
             aria-label="Close"
           />
         </header>
-        <form class="form-modal__form">
+        <form action="/contact" method="POST" class="form-modal__form">
           <div class="form-modal__input">
             <label for="#firstname" class="form-modal__input-label"
               >Prénom</label
@@ -489,7 +600,9 @@
               class="form-modal__input-field form-modal__input-field--textarea"
             ></textarea>
           </div>
-          <button class="form-modal__submit-btn btn">Envoyer</button>
+          <button type="submit" class="form-modal__submit-btn btn">
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
@@ -507,25 +620,33 @@
             aria-label="Close"
           />
           <a
-            href="mediaIdPreviousMedia"
+            href="#"
             class="lightbox-modal__navigation lightbox-modal__previous-btn"
-            aria-label="Image précédente"
-            >&#9001;</a
+            aria-label="Image ou Vidéo précédente"
+            data-behavior="previous"
+            >〈</a
           >
           <a
-            href="mediaIdNextMedia"
+            href="#"
             class="lightbox-modal__navigation lightbox-modal__next-btn"
-            aria-label="Image suivante"
-            >&#9002;</a
+            aria-label="Image ou Vidéo Image suivante"
+            data-behavior="next"
+            >〉</a
           >
         </header>
         <div class="lightbox-modal__content">
-          <img
+          <video
             class="lightbox-modal__media"
-            src="assets/works/photos/Event_SeasideWedding.jpg"
-            alt="Nom de limage"
-          />
-          <h2 class="lightbox-modal__title">Seaside</h2>
+            title="Wild horses in the mountains"
+            aria-label="Wild horses in the mountains"
+            controls=""
+          >
+            <source
+              src="assets/works/videos/Animals_Wild_Horses_in_the_mountains.mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <h2 class="lightbox-modal__title">Wild horses in the mountains</h2>
         </div>
       </div>
     </div>

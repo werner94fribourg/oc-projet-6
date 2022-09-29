@@ -61,6 +61,8 @@ const displayModal = () => {
   setTimeout(() => {
     modalBg.dataset.hidden = false;
   }, 500);
+  const modal = modalBg.querySelector('.form-modal');
+  modal.setAttribute('aria-hidden', false);
 };
 
 /**
@@ -74,6 +76,8 @@ const closeModal = () => {
   setTimeout(() => {
     modalBg.style.display = 'none';
   }, 1000);
+  const modal = modalBg.querySelector('.form-modal');
+  modal.setAttribute('aria-hidden', true);
 };
 
 /**
@@ -130,6 +134,8 @@ const displayLightBox = (factory, mediaId) => {
   setTimeout(() => {
     lightBoxBg.dataset.hidden = false;
   }, 500);
+  const lightbox = lightBoxBg.querySelector('.lightbox-modal');
+  lightbox.setAttribute('aria-hidden', false);
 };
 
 /**
@@ -143,6 +149,8 @@ const closeLightBox = () => {
   setTimeout(() => {
     lightBoxBg.style.display = 'none';
   }, 1000);
+  const lightbox = lightBoxBg.querySelector('.lightbox-modal');
+  lightbox.setAttribute('aria-hidden', true);
 };
 
 const navigateToAdjacentImage = (factory, behavior) => {

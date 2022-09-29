@@ -20,10 +20,10 @@ export default class MediaView extends View {
    */
   _generateMarkup() {
     return `
-    <article class="card-media" role="listitem">
+    <article class="card-media" role="listitem" data-id="${this._data.id}">
       <a href="#" class="card-media__link" data-id="${
         this._data.id
-      }" role="link" aria-labelledby="card-media__title--${this._data.id}">
+      }" role="link" aria-describedby="card-media__title--${this._data.id}">
         ${this._generateMediaMarkup()}
       </a>
       <div class="card-media__description">
@@ -31,15 +31,15 @@ export default class MediaView extends View {
           ${this._data.title}
         </h3>
         <div class="card-media__like-description">
-          <span class="card-media__nb-likes" aria-label="Nombre de likes">${
+          <span class="card-media__nb-likes" aria-label="Nombre de likes: ${
             this._data.likes
-          }</span>
+          }">${this._data.likes}</span>
           <a href="#" class="card-media__like" role="link" aria-label="Liker l'image" data-id="${
             this._data.id
           }" data-liked="${this._data.liked ? true : false}">
             <svg class="icon-heart ${
               this._data.liked ? 'icon-heart--filled' : ''
-            }" role="img" aria-label="likes">
+            }" role="img">
               <use xlink:href="assets/icons/heart.svg#icon-heart"></use>
             </svg>
           </a>
@@ -57,14 +57,18 @@ export default class MediaView extends View {
    * @author Werner Schmid
    */
   addHandlerLike(handler) {
-    this._parentElement.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      const likeBtn = event.target.closest('.card-media__like');
-      if (!likeBtn) return;
+    this._parentElement
+      .querySelector(
+        `.card-media[data-id="${this._data.id}"] .card-media__like`
+      )
+      .addEventListener('click', event => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        const likeBtn = event.target.closest('.card-media__like');
+        if (!likeBtn) return;
 
-      handler(likeBtn);
-    });
+        handler(likeBtn);
+      });
   }
 
   /**
