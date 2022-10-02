@@ -23,7 +23,7 @@ export const mediaFactory = mediaList => {
   let currentViewIndex = 0;
 
   const next = () => {
-    if (++currentViewIndex > nbMedias)
+    if (++currentViewIndex >= nbMedias)
       currentViewIndex = currentViewIndex % nbMedias;
     return mediaList[currentViewIndex];
   };

@@ -13,6 +13,188 @@ import { photographerFactory } from './factories/photographer';
 import photographerMediasView from './views/photographerMediasView';
 
 /**
+ * Keyboard navigation items
+ */
+const keyCodes = [
+  'ArrowUp',
+  'ArrowDown',
+  'Tab',
+  'ArrowLeft',
+  'ArrowRight',
+  'Enter',
+  'Escape',
+];
+
+/**
+ * Variable that says if we are in the main navigation flow or not
+ */
+let mainNavigationFlow = true;
+
+/**
+ * Variable that says if we are in the contact form navigation flow or not
+ */
+let contactFormNavigationFlow = false;
+
+/**
+ * Variable that says if we are in the lightbox navigation flow or not
+ */
+let lightboxNavigationFlow = false;
+
+/**
+ * Variable that says if we are in the filter form navigation flow or not
+ */
+let filterFormNavigationFlow = false;
+
+/**
+ * Array containing all the focusable elements when navigating with the keyboard
+ */
+let focusablesArray = [];
+
+/**
+ * Array containing all the focusable elements of the contact form when navigating with the keyboard
+ */
+let focusablesContactFormArray = [];
+
+/**
+ * Array containing all the focusable elements of the filter form when navigating with the keyboard
+ */
+let focusablesFilterFormArray = [];
+
+/**
+ * Position of the focusable when navigating with the keyboard
+ */
+let position = 0;
+
+/**
+ * Position of the focusable when navigating with the keyboard in the contact form
+ */
+let positionContactForm = 0;
+
+/**
+ * Position of the focusable when navigating with the keyboard in the filter form
+ */
+let positionFilterForm = 0;
+
+/**
+ * boolean checking if its the first time we navigate through the components
+ */
+let firstTimeNavigation = true;
+
+/**
+ * Function used to reset the array of focusables and add new focusable elements
+ * @returns {undefined} No returned value by the function
+ * @author Werner Schmid
+ */
+const resetArrayOfFocusables = () => {
+  focusablesArray = Array.from(document.querySelectorAll('.focusable'));
+  position = 0;
+};
+
+/**
+ * Function used to navigate to the previous element in the navigation order
+ * @returns {HTMLElement} the element that will have the focus on
+ * @author Werner Schmid
+ */
+const previousFocusable = () => {
+  if (!firstTimeNavigation) position--;
+  if (position < 0) position = focusablesArray.length + position;
+  return focusablesArray[position];
+};
+
+/**
+ * Function used to navigate to the next element in the navigation order
+ * @returns {HTMLElement} the element that will have the focus on
+ * @author Werner Schmid
+ */
+const nextFocusable = () => {
+  if (!firstTimeNavigation) position++;
+  if (position >= focusablesArray.length)
+    position = position % focusablesArray.length;
+  return focusablesArray[position];
+};
+
+/**
+ * Function used to navigate to the previous element in the navigation order from the contact form
+ * @returns {HTMLElement} the element that will have the focus on
+ * @author Werner Schmid
+ */
+const previousContactFormFocusable = () => {
+  positionContactForm--;
+  if (positionContactForm < 0)
+    positionContactForm =
+      focusablesContactFormArray.length + positionContactForm;
+  return focusablesContactFormArray[positionContactForm];
+};
+
+/**
+ * Function used to navigate to the next element in the navigation order from the contact form
+ * @returns {HTMLElement} the element that will have the focus on
+ * @author Werner Schmid
+ */
+const nextContactFormFocusable = () => {
+  positionContactForm++;
+  if (positionContactForm >= focusablesContactFormArray.length)
+    positionContactForm =
+      positionContactForm % focusablesContactFormArray.length;
+  return focusablesContactFormArray[positionContactForm];
+};
+
+/**
+ * Function used to navigate to the previous element in the navigation order from the filter form
+ * @returns {HTMLElement} the element that will have the focus on
+ * @author Werner Schmid
+ */
+const previousFilterFormFocusable = () => {
+  positionFilterForm--;
+  if (positionFilterForm < 0)
+    positionFilterForm = focusablesFilterFormArray.length + positionFilterForm;
+  return focusablesFilterFormArray[positionFilterForm];
+};
+
+/**
+ * Function used to navigate to the next element in the navigation order from the filter form
+ * @returns {HTMLElement} the element that will have the focus on
+ * @author Werner Schmid
+ */
+const nextFilterFormFocusable = () => {
+  positionFilterForm++;
+  if (positionFilterForm >= focusablesFilterFormArray.length)
+    positionFilterForm = positionFilterForm % focusablesFilterFormArray.length;
+  return focusablesFilterFormArray[positionFilterForm];
+};
+
+/**
+ * Function used to handle the keyboard pressed event when being on a page
+ * @param {string} code the keyboard code of the pressed control on the keyboard of the user
+ * @returns {undefined} No returned value by the function
+ * @author Werner Schmid
+ */
+const handleBodyKeyBoardNavigation = code => {
+  if (!mainNavigationFlow) return;
+  switch (code) {
+    case 'Enter':
+      if (
+        document.querySelector('.main__photographer-filter-input') !==
+        focusablesArray[position]
+      )
+        focusablesArray[position].click();
+      else
+        document.querySelector('.main__photographer-filter-open-btn').click();
+      break;
+    case 'ArrowLeft':
+      previousFocusable().focus();
+      break;
+    case 'ArrowRight':
+      nextFocusable().focus();
+      break;
+    case 'Tab':
+      nextFocusable().focus();
+      break;
+  }
+  firstTimeNavigation = false;
+};
+
+/**
  * The method takes care of rendering the header semantic tag of the HTML page based on the url
  * @returns {undefined} No returned value by the function
  * @author Werner Schmid
@@ -60,9 +242,21 @@ const displayModal = () => {
   modalBg.style.display = 'block';
   setTimeout(() => {
     modalBg.dataset.hidden = false;
+    //document.getElementById('firstname').focus();
   }, 500);
   const modal = modalBg.querySelector('.form-modal');
   modal.setAttribute('aria-hidden', false);
+  position = focusablesArray.indexOf(
+    document.querySelector('.btn--open.focusable')
+  );
+  mainNavigationFlow = false;
+  contactFormNavigationFlow = true;
+  focusablesContactFormArray = Array.from(
+    document.querySelectorAll('.modal-focusable')
+  );
+  positionContactForm = 0;
+  focusablesContactFormArray[positionContactForm].focus();
+  firstTimeNavigation = false;
 };
 
 /**
@@ -78,6 +272,9 @@ const closeModal = () => {
   }, 1000);
   const modal = modalBg.querySelector('.form-modal');
   modal.setAttribute('aria-hidden', true);
+  mainNavigationFlow = true;
+  contactFormNavigationFlow = false;
+  focusablesArray[position].focus();
 };
 
 /**
@@ -97,6 +294,49 @@ const submitFormModalForm = datas => {
 
   // Close the contact form modal
   closeModal();
+};
+
+/**
+ * Function used to handle the navigation when the form modal is open
+ * @param {string} code code of the keyboard element that was pressed by the user
+ * @returns {undefined} No returned value by the function
+ * @author Werner Schmid
+ */
+const handleModalNavigation = code => {
+  if (!contactFormNavigationFlow) return;
+  switch (code) {
+    case 'Escape':
+      document.querySelector('.form-modal__close-btn').click();
+      break;
+    case 'Enter':
+      if (
+        focusablesContactFormArray[positionContactForm].classList.contains(
+          'clickable'
+        )
+      )
+        focusablesContactFormArray[positionContactForm].click();
+      else focusablesContactFormArray[positionContactForm].value += '\n';
+      break;
+    case 'ArrowUp':
+      previousContactFormFocusable().focus();
+      break;
+    case 'ArrowBottom':
+      nextContactFormFocusable().focus();
+      break;
+    case 'Tab':
+      nextContactFormFocusable().focus();
+      break;
+  }
+};
+
+/**
+ * Function used to handle the focus event in the contact form
+ * @param {HTMLElement} target target input element that receives the focus in the contact form
+ * @returns {undefined} No returned value by the function
+ * @author Werner Schmid
+ */
+const handleFocusOnContactFormFocusable = target => {
+  positionContactForm = focusablesContactFormArray.indexOf(target);
 };
 
 /**
@@ -136,6 +376,14 @@ const displayLightBox = (factory, mediaId) => {
   }, 500);
   const lightbox = lightBoxBg.querySelector('.lightbox-modal');
   lightbox.setAttribute('aria-hidden', false);
+  lightbox.dataset.id = mediaId;
+
+  position = focusablesArray.indexOf(
+    document.querySelector(`.card-media__link[data-id="${mediaId}"]`)
+  );
+  mainNavigationFlow = false;
+  lightboxNavigationFlow = true;
+  firstTimeNavigation = false;
 };
 
 /**
@@ -150,7 +398,29 @@ const closeLightBox = () => {
     lightBoxBg.style.display = 'none';
   }, 1000);
   const lightbox = lightBoxBg.querySelector('.lightbox-modal');
+  const mediaId = lightbox.dataset.id;
   lightbox.setAttribute('aria-hidden', true);
+  position = focusablesArray.indexOf(
+    document.querySelector(`.card-media__link[data-id="${mediaId}"]`)
+  );
+  mainNavigationFlow = true;
+  lightboxNavigationFlow = false;
+  focusablesArray[position].focus();
+};
+
+const handleLightBoxNavigation = code => {
+  if (!lightboxNavigationFlow) return;
+  switch (code) {
+    case 'ArrowLeft':
+      document.querySelector('.lightbox-modal__previous-btn').click();
+      break;
+    case 'ArrowRight':
+      document.querySelector('.lightbox-modal__next-btn').click();
+      break;
+    case 'Escape':
+      document.querySelector('.lightbox-modal__close-btn').click();
+      break;
+  }
 };
 
 const navigateToAdjacentImage = (factory, behavior) => {
@@ -194,6 +464,9 @@ const controlRenderMainPage = async () => {
 
     // Render the main content of the index page
     indexMainView.render(model.state.photographers);
+
+    // Set the focusable array
+    resetArrayOfFocusables();
   } catch (err) {
     throw err;
   }
@@ -252,6 +525,8 @@ const handleFilterInputElement = (element, value) => {
 /**
  * Function used to change the displayed selected option in the filter form
  * @param {HTMLElement} element choosen input option that will displayed in the filter form
+ * @returns {undefined} No returned value by the function
+ * @author Werner Schmid
  */
 const changeDisplayedSortingOption = element => {
   // Modify the aria-checked parameter of the element
@@ -273,14 +548,37 @@ const changeDisplayedSortingOption = element => {
 /**
  * Function used to handle the click on the Filter form
  * @param {target} target Targeted element when the user clicks on the filter form
+ * @param {boolean} keyboard boolean that says if the user navigates with his keyboard or not (false by default)
+ * @returns {undefined} No returned value by the function
+ * @author Werner Schmid
  */
-const mouseUpFilterForm = target => {
+const mouseUpFilterForm = (target, keyboard = false) => {
   const filterInputContainer = document.querySelector(
     '.main__photographer-filter-input'
   );
 
   filterInputContainer.dataset.clicked =
     target === filterInputContainer ? true : false;
+
+  mainNavigationFlow = target === filterInputContainer ? false : true;
+
+  filterFormNavigationFlow = target === filterInputContainer ? true : false;
+  position = focusablesArray.indexOf(
+    document.querySelector('.main__photographer-filter-input')
+  );
+  focusablesArray[position].focus();
+  focusablesFilterFormArray = Array.from(
+    document.querySelectorAll('.filter-focusable')
+  );
+  positionFilterForm = 0;
+  focusablesFilterFormArray[positionFilterForm].focus();
+  if (keyboard)
+    document
+      .querySelector(
+        '.main__photographer-filter-option-label[style="grid-row: 1 / 2"]'
+      )
+      .focus();
+  firstTimeNavigation = false;
 };
 
 /**
@@ -307,6 +605,24 @@ const controlSelectFilterOption = (input, checkedInput, filterForm) => {
   filterForm.querySelector('.main__photographer-submit-btn').click();
 };
 
+const handleFilterFormNavigation = code => {
+  if (!filterFormNavigationFlow) return;
+  switch (code) {
+    case 'ArrowUp':
+      previousFilterFormFocusable().focus();
+      break;
+    case 'ArrowDown':
+      nextFilterFormFocusable().focus();
+      break;
+    case 'Tab':
+      nextFilterFormFocusable().focus();
+      break;
+    case 'Enter':
+      focusablesFilterFormArray[positionFilterForm].click();
+      break;
+  }
+};
+
 /**
  * Function that takes care of handling the submission of the filter form and re-rendering the media list
  * @param {HTMLElement} filterForm Filter form that was submitted
@@ -323,6 +639,9 @@ const submitFilterForm = (filterForm, photographerFactory) => {
 
   //Re-render the list of medias
   photographerMediasView.updateMediaList(checkedValue);
+  focusablesArray = Array.from(document.querySelectorAll('.focusable'));
+  mainNavigationFlow = true;
+  filterFormNavigationFlow = false;
 };
 
 /**
@@ -393,7 +712,11 @@ const renderComponents = async () => {
       // DISPLAY
       await controlRenderMainPage();
       // EVENT LISTENERS
-      if (!model.state.reload) bodyView.addHandlerClick(navigateTo);
+      if (!model.state.reload) {
+        bodyView.addHandlerClick(navigateTo);
+        bodyView.addHandlerKeyDown(handleBodyKeyBoardNavigation);
+      }
+      firstTimeNavigation = true;
       return;
     }
 
@@ -407,6 +730,7 @@ const renderComponents = async () => {
       const factory = await controlRenderMainPhotographerPage(id);
       controlRenderFormModal(factory);
       controlRenderLightboxModal(factory);
+      resetArrayOfFocusables();
 
       // EVENT LISTENERS
       photographerMainView.addHandlerClick(displayModal);
@@ -417,12 +741,22 @@ const renderComponents = async () => {
         controlSelectFilterOption
       );
       photographerMainView.addHandlerSubmitFilterForm(submitFilterForm);
+      photographerMainView.addHandlerKeyboardFilterForm(
+        handleFilterFormNavigation
+      );
       photographerMainView.addHandlerLikeImage(likeImage);
 
       formModalView.addHandlerClick(closeModal);
+      formModalView.addHandlerFocus(handleFocusOnContactFormFocusable);
       formModalView.addHandlerSubmit(submitFormModalForm);
+      formModalView.addHandlerNavigation(handleModalNavigation);
 
       lightBoxModalView.addHandlerClick(closeLightBox, navigateToAdjacentImage);
+      lightBoxModalView.addHandlerNavigation(handleLightBoxNavigation);
+      if (!model.state.reload) {
+        bodyView.addHandlerKeyDown(handleBodyKeyBoardNavigation);
+      }
+      firstTimeNavigation = true;
       return;
     }
   } catch (err) {
@@ -484,4 +818,7 @@ init().catch(err => {
 window.addEventListener('popstate', event => {
   event.preventDefault();
   navigateTo(document.location.href.replace(document.location.origin, ''));
+});
+window.addEventListener('keydown', event => {
+  if (keyCodes.some(keyCode => keyCode === event.code)) event.preventDefault();
 });

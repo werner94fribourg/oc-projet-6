@@ -62,12 +62,24 @@ class PhotographerMediasView extends PhotographerPageComponentView {
    * Function used to add an event listener when we click on the filter form
    * @param {function} handler Function that will be called when the mouseup event happens on the form
    * @returns {undefined} No returned value by the function
-   * @this {Object} the current PhotographerFilterFormView instance calling the addHandlerClick function
+   * @this {Object} the current PhotographerMediasFormView instance calling the addHandlerClick function
    * @author Werner Schmid
    */
   addHandlerMouseUpFilterForm(handler) {
     photographerFilterFormView.addHandlerMouseUp(handler);
   }
+
+  /**
+   * Function used to add an event listener when we click on the keyboard when focusing the filter form
+   * @param {function} handler Function that will be called when the keyboard event happens on the form
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current PhotographerMediasFormView instance calling the addHandlerClick function
+   * @author Werner Schmid
+   */
+  addHandlerKeyboardFilterForm(handler) {
+    photographerFilterFormView.addHandlerKeyboard(handler);
+  }
+
   /**
    * Function used to add an event listener when we select an option on the filter form
    * @param {function} handler Function that will be called when the click event happens on the form

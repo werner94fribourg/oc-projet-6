@@ -20,7 +20,7 @@ class PhotographerHeaderView extends PhotographerPageComponentView {
   _generateMarkup() {
     return `
       ${this._photographerFactory.getUserHeader()}
-      <button class="btn btn--open" data--main-page="false" data-first-focus="true">Contactez-moi</button>
+      <button class="btn btn--open focusable" data--main-page="false" data-first-focus="true">Contactez-moi</button>
       <img
         src="${this._photographerFactory.picture}"
         alt="${this._photographerFactory.name}"

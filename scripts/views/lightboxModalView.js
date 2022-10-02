@@ -35,6 +35,7 @@ class LightBoxModalView extends PhotographerPageComponentView {
       ](media);
     const mediaEl = this._parentElement.querySelector('.lightbox-modal__media');
     const contentEl = mediaEl.parentElement;
+    const lightbox = contentEl.closest('.lightbox-modal');
 
     // Remove the previous media item
     mediaEl.remove();
@@ -43,6 +44,7 @@ class LightBoxModalView extends PhotographerPageComponentView {
     contentEl.insertAdjacentHTML('afterbegin', newMediaMarkup);
     // Change the title of the media
     contentEl.querySelector('.lightbox-modal__title').textContent = media.title;
+    lightbox.dataset.id = media.id;
 
     // Return a fulfilled promise when the media finishes to load
     return new Promise((resolve, _) => {
@@ -75,6 +77,19 @@ class LightBoxModalView extends PhotographerPageComponentView {
         const behavior = link.dataset.behavior;
         controlsHandler(this._photographerFactory, behavior);
       }
+    });
+  }
+
+  /**
+   * Function used to handle the click of the keyboard when the lightbox is opened
+   * @param {function} handler Function that will be called when a keyboard event happens on the lightbox
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current LightBoxModalView instance calling the addHandlerNavigation function
+   * @author Werner Schmid
+   */
+  addHandlerNavigation(handler) {
+    document.addEventListener('keydown', event => {
+      handler(event.code);
     });
   }
 }

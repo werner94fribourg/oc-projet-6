@@ -21,7 +21,7 @@ export default class MediaView extends View {
   _generateMarkup() {
     return `
     <article class="card-media" role="listitem" data-id="${this._data.id}">
-      <a href="#" class="card-media__link" data-id="${
+      <a href="#" class="card-media__link focusable" data-id="${
         this._data.id
       }" role="link" aria-describedby="card-media__title--${this._data.id}">
         ${this._generateMediaMarkup()}
@@ -34,7 +34,7 @@ export default class MediaView extends View {
           <span class="card-media__nb-likes" aria-label="Nombre de likes: ${
             this._data.likes
           }">${this._data.likes}</span>
-          <a href="#" class="card-media__like" role="link" aria-label="Liker l'image" data-id="${
+          <a href="#" class="card-media__like focusable" role="link" aria-label="Liker l'image" data-id="${
             this._data.id
           }" data-liked="${this._data.liked ? true : false}">
             <svg class="icon-heart ${

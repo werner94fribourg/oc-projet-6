@@ -14,7 +14,8 @@
     }
   }
   &:hover,
-  &:focus {
+  &:focus,
+  &:focus-within {
     animation: focusButton 1.2s ease-in-out forwards;
     color: black;
     &::after {

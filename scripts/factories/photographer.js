@@ -12,7 +12,7 @@ export const photographerFactory = ({ data, medias }) => {
   const getUserCard = () => {
     const markup = `
     <article class="card" role="listitem">
-      <a href="/photographer/${id}" class="card__link" data-id="${id}" role="link" aria-labelledby="card__name--${id}" aria-describebdy="card__label-description--${id}">
+      <a href="/photographer/${id}" class="card__link focusable" data-id="${id}" role="link" aria-labelledby="card__name--${id}" aria-describebdy="card__label-description--${id}">
         <img src="${picture}" class="card__portrait" alt="Photo de profil de ${name}" aria-hidden="true" />
         <div id="card__name--${id}" class="card__name">${name}</div>
         <span id="card__label-description--${id}" class="card__label-description hidden">Page du photographe ${name}</span>
@@ -57,26 +57,26 @@ export const photographerFactory = ({ data, medias }) => {
             <span class="form-modal__title-contact">Contactez-moi</span>
             <span class="form-modal__title-name">${name}</span>
           </h2>
-          <img src="assets/icons/close.svg" class="form-modal__close-btn" aria-label="Fermer" />
+          <img src="assets/icons/close.svg" class="form-modal__close-btn clickable" aria-label="Fermer" />
         </header>
         <form action="/contact" method="POST" class="form-modal__form">
           <div class="form-modal__input">
             <label for="firstname" class="form-modal__input-label">Prénom</label>
-            <input type="text" id="firstname" name="firstname" class="form-modal__input-field form-modal__input-field--text" />
+            <input type="text" id="firstname" name="firstname" class="form-modal__input-field form-modal__input-field--text modal-focusable" />
           </div>
           <div class="form-modal__input">
             <label for="lastname" class="form-modal__input-label">Nom</label>
-            <input type="text" id="lastname" name="lastname" class="form-modal__input-field form-modal__input-field--text" />
+            <input type="text" id="lastname" name="lastname" class="form-modal__input-field form-modal__input-field--text modal-focusable" />
           </div>
           <div class="form-modal__input">
             <label for="email" class="form-modal__input-label">Email</label>
-            <input type="email" id="email" name="email" class="form-modal__input-field form-modal__input-field--text" />
+            <input type="email" id="email" name="email" class="form-modal__input-field form-modal__input-field--text modal-focusable" />
           </div>
           <div class="form-modal__input">
             <label for="message" class="form-modal__input-label">Votre message</label>
-            <textarea id="message" name="message" rows="4" class="form-modal__input-field form-modal__input-field--textarea"></textarea>
+            <textarea id="message" name="message" rows="4" class="form-modal__input-field form-modal__input-field--textarea modal-focusable"></textarea>
           </div>
-          <button type="submit" class="form-modal__submit-btn btn">Envoyer</button>
+          <button type="submit" class="form-modal__submit-btn btn modal-focusable clickable">Envoyer</button>
         </form>
       </div>
     </div>

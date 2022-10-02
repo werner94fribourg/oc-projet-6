@@ -34,7 +34,7 @@ class HeaderView extends PageComponentView {
    */
   _generateHeaderLogoMarkup() {
     return `
-    <a class="header__index-link" href="/" aria-label="Fisheye Home page">
+    <a class="header__index-link focusable" href="/" aria-label="Fisheye Home page">
       <img role="img" aria-hidden="true" src="assets/images/logo.png" class="header__logo" alt="Fisheye Home page" />
     </a>
     `;

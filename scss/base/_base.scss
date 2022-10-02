@@ -4,6 +4,9 @@
   &::before {
     box-sizing: inherit;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 html {

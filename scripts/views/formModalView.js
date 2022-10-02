@@ -12,6 +12,7 @@ class FormModalView extends PageComponentView {
    */
   constructor(errorMessage) {
     super(document.querySelector('body'), errorMessage, false);
+    this._position = 0;
   }
 
   /**
@@ -49,6 +50,26 @@ class FormModalView extends PageComponentView {
   }
 
   /**
+   * Function used to add an event listener on the input fields subcomponents in the View
+   * @param {function} handler Function that will be called when the focus event happens to an input field in the form
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current FormModalView instance calling the addHandlerClick function
+   * @author Werner Schmid
+   */
+  addHandlerFocus(handler) {
+    this._parentElement
+      .querySelectorAll('.form-modal__input-field')
+      .forEach(input => {
+        input.addEventListener('focus', event => {
+          const input = event.target.closest('.form-modal__input-field');
+          if (!input) return;
+
+          handler(input);
+        });
+      });
+  }
+
+  /**
    * Function used to handle the submission of the form contained in the View
    * @param {function} handler Function that will be called when the click event happens to the form
    * @returns {undefined} No returned value by the function
@@ -71,6 +92,19 @@ class FormModalView extends PageComponentView {
         });
         handler(datas);
       });
+  }
+
+  /**
+   * Function used to handle the click of the keyboard when the modal is opened
+   * @param {function} handler Function that will be called when a keyboard event happens on the modal
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current FormModalView instance calling the addHandlerClick function
+   * @author Werner Schmid
+   */
+  addHandlerNavigation(handler) {
+    document.addEventListener('keydown', event => {
+      handler(event.code);
+    });
   }
 }
 

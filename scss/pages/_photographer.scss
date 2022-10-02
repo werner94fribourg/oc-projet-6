@@ -25,6 +25,7 @@
   }
   &__photographer-medias {
     margin: 0 10rem;
+    padding-bottom: 7vh;
     @include respond(tab-land) {
       margin: 0 5rem;
     }
@@ -133,6 +134,9 @@
         height: 1.83vw;
       }
     }
+  }
+  &__photographer-filter-open-btn {
+    display: none;
   }
   &__photographer-filter-choosen-option {
     display: block;

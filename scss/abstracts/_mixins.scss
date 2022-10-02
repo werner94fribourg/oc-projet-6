@@ -29,7 +29,9 @@
   background-color: transparent;
   position: relative;
   transition: opacity 0.5s ease-in-out;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-within {
     &::before {
       opacity: 1;
       transition: opacity 0.5s ease-in-out;

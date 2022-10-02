@@ -366,6 +366,9 @@ $breakpoint values :
 *::after, *::before {
   box-sizing: inherit;
 }
+*:focus {
+  outline: none;
+}
 
 html {
   font-size: 62.5%;
@@ -405,7 +408,7 @@ body {
     height: 6.5vw;
   }
 }
-.header__index-link:hover .header__logo {
+.header__index-link:hover .header__logo, .header__index-link:focus .header__logo, .header__index-link:focus-within .header__logo {
   filter: brightness(150%);
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
@@ -513,15 +516,15 @@ body {
 .btn[data-first-focus=false]::before {
   transition: all 0.5s ease-in-out;
 }
-.btn:hover, .btn:focus {
+.btn:hover, .btn:focus, .btn:focus-within {
   animation: focusButton 1.2s ease-in-out forwards;
   color: black;
 }
-.btn:hover::after, .btn:focus::after {
+.btn:hover::after, .btn:focus::after, .btn:focus-within::after {
   opacity: 0;
   transition: all 1.2s ease-in-out;
 }
-.btn:hover::before, .btn:focus::before {
+.btn:hover::before, .btn:focus::before, .btn:focus-within::before {
   opacity: 1;
   transition: all 1.2s ease-in-out;
 }
@@ -552,7 +555,7 @@ body {
   font-size: 2.4rem;
   transition: all 0.5s ease-in-out;
 }
-.card-media:hover {
+.card-media:hover, .card-media:focus, .card-media:focus-within {
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
 }
@@ -573,11 +576,11 @@ body {
   text-decoration: none;
   color: inherit;
 }
-.card-media__link:hover .card-media__img {
+.card-media__link:hover .card-media__img, .card-media__link:focus .card-media__img, .card-media__link:focus-within .card-media__img {
   filter: grayscale(0.8);
   transition: all 0.5s ease-in-out;
 }
-.card-media__link:hover ~ .card-media__description {
+.card-media__link:hover ~ .card-media__description, .card-media__link:focus ~ .card-media__description, .card-media__link:focus-within ~ .card-media__description {
   color: var(--color-secondary);
 }
 .card-media__img {
@@ -643,10 +646,10 @@ body {
   text-decoration: none;
   color: inherit;
 }
-.card-media__like:hover {
+.card-media__like:hover, .card-media__like:focus, .card-media__like:focus-within {
   color: var(--color-secondary);
 }
-.card-media__like:hover svg {
+.card-media__like:hover svg, .card-media__like:focus svg, .card-media__like:focus-within svg {
   transform: scale(1.3) translateX(-5%);
   transition: all 0.5s ease-in-out;
 }
@@ -673,7 +676,7 @@ body {
   height: 31rem;
   transition: all 0.5s ease-in-out;
 }
-.card:hover {
+.card:hover, .card:focus, .card:focus-within {
   transform: scale(1.1);
   transition: all 0.5s ease-in-out;
 }
@@ -698,11 +701,11 @@ body {
   text-decoration: none;
   color: inherit;
 }
-.card__link:hover .card__portrait {
+.card__link:hover .card__portrait, .card__link:focus .card__portrait, .card__link:focus-within .card__portrait {
   filter: grayscale(0.8);
   transition: all 0.5s ease-in-out;
 }
-.card__link:hover .card__name {
+.card__link:hover .card__name, .card__link:focus .card__name, .card__link:focus-within .card__name {
   color: var(--color-primary);
   transition: all 0.5s ease-in-out;
 }
@@ -1088,6 +1091,7 @@ body {
 }
 .main__photographer-medias {
   margin: 0 10rem;
+  padding-bottom: 7vh;
 }
 @media only screen and (max-width: 62em) {
   .main__photographer-medias {
@@ -1213,7 +1217,7 @@ body {
     border-radius: 0.61vw;
   }
 }
-.main__photographer-filter-input:hover::before {
+.main__photographer-filter-input:hover::before, .main__photographer-filter-input:focus::before, .main__photographer-filter-input:focus-within::before {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
@@ -1263,6 +1267,9 @@ body {
     width: 2.5vw;
     height: 1.83vw;
   }
+}
+.main__photographer-filter-open-btn {
+  display: none;
 }
 .main__photographer-filter-choosen-option {
   display: block;
@@ -1321,7 +1328,7 @@ body {
   align-items: center;
   justify-content: left;
 }
-.main__photographer-filter-option-label:hover::before {
+.main__photographer-filter-option-label:hover::before, .main__photographer-filter-option-label:focus::before, .main__photographer-filter-option-label:focus-within::before {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }

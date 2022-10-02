@@ -19,7 +19,9 @@
     }
   }
   &__index-link {
-    &:hover {
+    &:hover,
+    &:focus,
+    &:focus-within {
       .header__logo {
         filter: brightness(150%);
         transform: scale(1.1);

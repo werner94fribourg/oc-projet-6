@@ -31,6 +31,20 @@ class BodyView extends PageComponentView {
       handler(link.pathname);
     });
   }
+
+  /**
+   * Function used to add an event listener when the user presses the keyboard
+   * @param {function} handler Function that will be called when the keyboard event happens
+   * @returns {undefined} No returned value by the function
+   * @this {Object} the current BodyView instance calling the addHandlerKeyDown function
+   * @author Werner Schmid
+   */
+  addHandlerKeyDown(handler) {
+    this._parentElement.addEventListener('keydown', e => {
+      const keyCode = e.code;
+      const target = handler(keyCode);
+    });
+  }
 }
 
 /**
