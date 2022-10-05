@@ -57,7 +57,7 @@ export const photographerFactory = ({ data, medias }) => {
             <span class="form-modal__title-contact">Contactez-moi</span>
             <span class="form-modal__title-name">${name}</span>
           </h2>
-          <img src="assets/icons/close.svg" class="form-modal__close-btn clickable" aria-label="Fermer" />
+          <img src="assets/icons/close.svg" class="form-modal__close-btn clickable" alt="Fermer" aria-label="Fermer" />
         </header>
         <form action="/contact" method="POST" class="form-modal__form">
           <div class="form-modal__input">

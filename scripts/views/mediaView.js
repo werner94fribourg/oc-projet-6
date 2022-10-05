@@ -27,9 +27,9 @@ export default class MediaView extends View {
         ${this._generateMediaMarkup()}
       </a>
       <div class="card-media__description">
-        <h3 class="card-media__title" id="card-media__title--${this._data.id}">
+        <h2 class="card-media__title" id="card-media__title--${this._data.id}">
           ${this._data.title}
-        </h3>
+        </h2>
         <div class="card-media__like-description">
           <span class="card-media__nb-likes" aria-label="Nombre de likes: ${
             this._data.likes

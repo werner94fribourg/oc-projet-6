@@ -1358,6 +1358,20 @@ body {
     font-size: 2.44vw;
   }
 }
+.main__photographer-filter-fieldset {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  border: none;
+  min-inline-size: min-content;
+}
+.main__photographer-filter-legend {
+  visibility: hidden;
+  position: absolute;
+}
 .main__medias-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));

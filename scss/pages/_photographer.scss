@@ -194,6 +194,20 @@
       font-size: 2.44vw;
     }
   }
+  &__photographer-filter-fieldset {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    border: none;
+    min-inline-size: min-content;
+  }
+  &__photographer-filter-legend {
+    visibility: hidden;
+    position: absolute;
+  }
   &__medias-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
