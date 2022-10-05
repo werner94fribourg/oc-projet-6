@@ -47,10 +47,10 @@ class LightBoxModalView extends PhotographerPageComponentView {
     lightbox.dataset.id = media.id;
 
     // Return a fulfilled promise when the media finishes to load
-    return new Promise((resolve, _) => {
+    return new Promise(resolve => {
       document
         .querySelector('.lightbox-modal__media')
-        .addEventListener('load', event => {
+        .addEventListener('load', () => {
           resolve();
         });
     });

@@ -458,18 +458,14 @@ const addFocusAnimation = btn => {
  * @author Werner Schmid
  */
 const controlRenderMainPage = async () => {
-  try {
-    // Get the list of all photographers
-    await model.getPhotographers();
+  // Get the list of all photographers
+  await model.getPhotographers();
 
-    // Render the main content of the index page
-    indexMainView.render(model.state.photographers);
+  // Render the main content of the index page
+  indexMainView.render(model.state.photographers);
 
-    // Set the focusable array
-    resetArrayOfFocusables();
-  } catch (err) {
-    throw err;
-  }
+  // Set the focusable array
+  resetArrayOfFocusables();
 };
 
 /**
@@ -479,24 +475,20 @@ const controlRenderMainPage = async () => {
  * @author Werner Schmid
  */
 const controlRenderMainPhotographerPage = async id => {
-  try {
-    // Get the photographer data from the API
-    await model.getPhotographer(id);
+  // Get the photographer data from the API
+  await model.getPhotographer(id);
 
-    // Get the photographer factory from the model
-    const factory = photographerFactory(model.state.photographer);
+  // Get the photographer factory from the model
+  const factory = photographerFactory(model.state.photographer);
 
-    // Set the photographer Factory for the view
-    photographerMainView.setPhotographerFactory(factory);
+  // Set the photographer Factory for the view
+  photographerMainView.setPhotographerFactory(factory);
 
-    // Render the photographer main content
-    photographerMainView.render(model.state.photographer);
+  // Render the photographer main content
+  photographerMainView.render(model.state.photographer);
 
-    // Returns the photographer factory
-    return factory;
-  } catch (err) {
-    throw err;
-  }
+  // Returns the photographer factory
+  return factory;
 };
 
 /**
@@ -626,11 +618,10 @@ const handleFilterFormNavigation = code => {
 /**
  * Function that takes care of handling the submission of the filter form and re-rendering the media list
  * @param {HTMLElement} filterForm Filter form that was submitted
- * @param {Object} photographerFactory The photographer factory, used to re-render the medias
  * @returns {undefined} No returned value by the function
  * @author Werner Schmid
  */
-const submitFilterForm = (filterForm, photographerFactory) => {
+const submitFilterForm = filterForm => {
   // Retrieve the checked input
   const [checkedInput] = Array.from(filterForm.elements).filter(
     element => element.type === 'radio' && element.checked
@@ -698,69 +689,65 @@ const navigateTo = url => {
  * @author Werner Schmid
  */
 const renderComponents = async () => {
-  try {
-    // Non existing page
-    if (
-      model.state.url !== '/' &&
-      model.state.url.slice(0, 13) !== '/photographer'
-    ) {
-      throw new Error('Not Found');
+  // Non existing page
+  if (
+    model.state.url !== '/' &&
+    model.state.url.slice(0, 13) !== '/photographer'
+  ) {
+    throw new Error('Not Found');
+  }
+  if (model.state.url === '/') {
+    // Render the list of photographers if we are on the main page
+    // Add the event listeners for the main page
+    // DISPLAY
+    await controlRenderMainPage();
+    // EVENT LISTENERS
+    if (!model.state.reload) {
+      bodyView.addHandlerClick(navigateTo);
+      bodyView.addHandlerKeyDown(handleBodyKeyBoardNavigation);
     }
-    if (model.state.url === '/') {
-      // Render the list of photographers if we are on the main page
-      // Add the event listeners for the main page
-      // DISPLAY
-      await controlRenderMainPage();
-      // EVENT LISTENERS
-      if (!model.state.reload) {
-        bodyView.addHandlerClick(navigateTo);
-        bodyView.addHandlerKeyDown(handleBodyKeyBoardNavigation);
-      }
-      firstTimeNavigation = true;
-      return;
+    firstTimeNavigation = true;
+    return;
+  }
+
+  // Render the photographer Header, the photographer Photo list and the form modal if we are on a photographer page
+  // Add the event listeners for a photographer page
+  if (model.state.url.slice(0, 13) === '/photographer') {
+    // Get the id of the photographer that has to be rendered
+    const id = Number(model.state.url.slice(14));
+    if (isNaN(id)) throw new Error('Not Found');
+    // DISPLAY
+    const factory = await controlRenderMainPhotographerPage(id);
+    controlRenderFormModal(factory);
+    controlRenderLightboxModal(factory);
+    resetArrayOfFocusables();
+
+    // EVENT LISTENERS
+    photographerMainView.addHandlerClick(displayModal);
+    photographerMainView.addHandlerFocus(addFocusAnimation);
+    photographerMainView.addHandlerClickMedias(displayLightBox);
+    photographerMainView.addHandlerMouseUpFilterForm(mouseUpFilterForm);
+    photographerMainView.addHandlerClickFilterFormOption(
+      controlSelectFilterOption
+    );
+    photographerMainView.addHandlerSubmitFilterForm(submitFilterForm);
+    photographerMainView.addHandlerKeyboardFilterForm(
+      handleFilterFormNavigation
+    );
+    photographerMainView.addHandlerLikeImage(likeImage);
+
+    formModalView.addHandlerClick(closeModal);
+    formModalView.addHandlerFocus(handleFocusOnContactFormFocusable);
+    formModalView.addHandlerSubmit(submitFormModalForm);
+    formModalView.addHandlerNavigation(handleModalNavigation);
+
+    lightBoxModalView.addHandlerClick(closeLightBox, navigateToAdjacentImage);
+    lightBoxModalView.addHandlerNavigation(handleLightBoxNavigation);
+    if (!model.state.reload) {
+      bodyView.addHandlerKeyDown(handleBodyKeyBoardNavigation);
     }
-
-    // Render the photographer Header, the photographer Photo list and the form modal if we are on a photographer page
-    // Add the event listeners for a photographer page
-    if (model.state.url.slice(0, 13) === '/photographer') {
-      // Get the id of the photographer that has to be rendered
-      const id = Number(model.state.url.slice(14));
-      if (isNaN(id)) throw new Error('Not Found');
-      // DISPLAY
-      const factory = await controlRenderMainPhotographerPage(id);
-      controlRenderFormModal(factory);
-      controlRenderLightboxModal(factory);
-      resetArrayOfFocusables();
-
-      // EVENT LISTENERS
-      photographerMainView.addHandlerClick(displayModal);
-      photographerMainView.addHandlerFocus(addFocusAnimation);
-      photographerMainView.addHandlerClickMedias(displayLightBox);
-      photographerMainView.addHandlerMouseUpFilterForm(mouseUpFilterForm);
-      photographerMainView.addHandlerClickFilterFormOption(
-        controlSelectFilterOption
-      );
-      photographerMainView.addHandlerSubmitFilterForm(submitFilterForm);
-      photographerMainView.addHandlerKeyboardFilterForm(
-        handleFilterFormNavigation
-      );
-      photographerMainView.addHandlerLikeImage(likeImage);
-
-      formModalView.addHandlerClick(closeModal);
-      formModalView.addHandlerFocus(handleFocusOnContactFormFocusable);
-      formModalView.addHandlerSubmit(submitFormModalForm);
-      formModalView.addHandlerNavigation(handleModalNavigation);
-
-      lightBoxModalView.addHandlerClick(closeLightBox, navigateToAdjacentImage);
-      lightBoxModalView.addHandlerNavigation(handleLightBoxNavigation);
-      if (!model.state.reload) {
-        bodyView.addHandlerKeyDown(handleBodyKeyBoardNavigation);
-      }
-      firstTimeNavigation = true;
-      return;
-    }
-  } catch (err) {
-    throw err;
+    firstTimeNavigation = true;
+    return;
   }
 };
 
@@ -770,16 +757,12 @@ const renderComponents = async () => {
  * @author Werner Schmid
  */
 const reload = async () => {
-  try {
-    // Reload the Header and the Main View in the page
-    controlRenderHeader();
-    controlRenderMain();
+  // Reload the Header and the Main View in the page
+  controlRenderHeader();
+  controlRenderMain();
 
-    // Render the components of the page
-    await renderComponents();
-  } catch (err) {
-    throw err;
-  }
+  // Render the components of the page
+  await renderComponents();
 };
 
 /**
@@ -788,25 +771,21 @@ const reload = async () => {
  * @author Werner Schmid
  */
 const init = async () => {
-  try {
-    // Get the url of the user and store it in the model
-    const url = document.location.href.replace(document.location.origin, '');
+  // Get the url of the user and store it in the model
+  const url = document.location.href.replace(document.location.origin, '');
 
-    // Store the url into the state object
-    model.setUrl(url);
+  // Store the url into the state object
+  model.setUrl(url);
 
-    // Render the Header and the Main View in the page
-    await Promise.all([
-      headerView.addHandlerLoadPage(controlRenderHeader),
-      mainView.addHandlerLoadPage(controlRenderMain),
-    ]);
+  // Render the Header and the Main View in the page
+  await Promise.all([
+    headerView.addHandlerLoadPage(controlRenderHeader),
+    mainView.addHandlerLoadPage(controlRenderMain),
+  ]);
 
-    // Render the components of the page
-    await renderComponents();
-    model.setReload(true);
-  } catch (err) {
-    throw err;
-  }
+  // Render the components of the page
+  await renderComponents();
+  model.setReload(true);
 };
 
 /**

@@ -42,7 +42,7 @@ class BodyView extends PageComponentView {
   addHandlerKeyDown(handler) {
     this._parentElement.addEventListener('keydown', e => {
       const keyCode = e.code;
-      const target = handler(keyCode);
+      handler(keyCode);
     });
   }
 }

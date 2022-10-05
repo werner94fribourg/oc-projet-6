@@ -11,8 +11,8 @@ class PageComponentView extends View {
    * @author Werner Schmid
    */
   addHandlerLoadPage(handler) {
-    return new Promise((resolve, _) => {
-      window.addEventListener('load', event => {
+    return new Promise(resolve => {
+      window.addEventListener('load', () => {
         handler();
         resolve();
       });

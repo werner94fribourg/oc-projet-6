@@ -31,17 +31,13 @@ export const state = {
  * @author Werner Schmid
  */
 export const getPhotographers = async () => {
-  try {
-    // Retrieve the photographers from the JSON file
-    const { photographers } = await AJAX_GET(
-      __dirname + 'data/photographers.json'
-    );
+  // Retrieve the photographers from the JSON file
+  const { photographers } = await AJAX_GET(
+    __dirname + 'data/photographers.json'
+  );
 
-    // Store the datas into the model
-    state.photographers = photographers;
-  } catch (err) {
-    throw err;
-  }
+  // Store the datas into the model
+  state.photographers = photographers;
 };
 
 /**
@@ -51,20 +47,16 @@ export const getPhotographers = async () => {
  * @author Werner Schmid
  */
 const getPhotographerData = async id => {
-  try {
-    // Retrieve the data of the photograph from the JSON file
-    const { photographers } = await AJAX_GET(
-      __dirname + 'data/photographers.json'
-    );
-    const photographer = photographers.find(
-      photographer => photographer.id === id
-    );
+  // Retrieve the data of the photograph from the JSON file
+  const { photographers } = await AJAX_GET(
+    __dirname + 'data/photographers.json'
+  );
+  const photographer = photographers.find(
+    photographer => photographer.id === id
+  );
 
-    // Store the photograph into the model
-    state.photographer.data = photographer;
-  } catch (err) {
-    throw err;
-  }
+  // Store the photograph into the model
+  state.photographer.data = photographer;
 };
 
 /**
@@ -74,41 +66,37 @@ const getPhotographerData = async id => {
  * @author Werner Schmid
  */
 export const getPhotographerMedias = async id => {
-  try {
-    // Retrieve the data of the medias from the JSON file
-    const { media } = await AJAX_GET(__dirname + 'data/photographers.json');
-    // localStorage liked medias
-    const likedMedias = localStorage.getItem('likes');
-    const data = likedMedias
-      ? JSON.parse(likedMedias).map(media => {
-          return {
-            id: Number.parseInt(media.id),
-          };
-        })
-      : null;
+  // Retrieve the data of the medias from the JSON file
+  const { media } = await AJAX_GET(__dirname + 'data/photographers.json');
+  // localStorage liked medias
+  const likedMedias = localStorage.getItem('likes');
+  const data = likedMedias
+    ? JSON.parse(likedMedias).map(media => {
+        return {
+          id: Number.parseInt(media.id),
+        };
+      })
+    : null;
 
-    // Filter the medias by keeping only the medias done by the desired photographer
-    const photographerMedias = media.filter(item => {
-      // Convert the item's date from a string to a date object
-      item.date = new Date(item.date);
+  // Filter the medias by keeping only the medias done by the desired photographer
+  const photographerMedias = media.filter(item => {
+    // Convert the item's date from a string to a date object
+    item.date = new Date(item.date);
 
-      // Add a like if the item is stored in the localStorage
-      if (data && data.some(dataItem => item.id === dataItem.id)) {
-        item.likes++;
-        item.liked = true;
-      } else {
-        item.liked = false;
-      }
+    // Add a like if the item is stored in the localStorage
+    if (data && data.some(dataItem => item.id === dataItem.id)) {
+      item.likes++;
+      item.liked = true;
+    } else {
+      item.liked = false;
+    }
 
-      // filter condition
-      return item.photographerId === id;
-    });
+    // filter condition
+    return item.photographerId === id;
+  });
 
-    // Store the medias in the model
-    state.photographer.medias = photographerMedias;
-  } catch (err) {
-    throw err;
-  }
+  // Store the medias in the model
+  state.photographer.medias = photographerMedias;
 };
 
 /**
@@ -118,12 +106,8 @@ export const getPhotographerMedias = async id => {
  * @author Werner Schmid
  */
 export const getPhotographer = async id => {
-  try {
-    // Retrieve the data of the photograph and his medias
-    await Promise.all([getPhotographerData(id), getPhotographerMedias(id)]);
-  } catch (err) {
-    throw err;
-  }
+  // Retrieve the data of the photograph and his medias
+  await Promise.all([getPhotographerData(id), getPhotographerMedias(id)]);
 };
 
 /**

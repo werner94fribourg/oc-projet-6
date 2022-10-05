@@ -12,7 +12,6 @@ class FormModalView extends PageComponentView {
    */
   constructor(errorMessage) {
     super(document.querySelector('body'), errorMessage, false);
-    this._position = 0;
   }
 
   /**

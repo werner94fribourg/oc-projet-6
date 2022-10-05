@@ -56,7 +56,7 @@ class PhotographerFilterFormView extends PhotographerPageComponentView {
       });
     document
       .querySelector('.main__photographer-filter-open-btn')
-      .addEventListener('click', event => {
+      .addEventListener('click', () => {
         const target = document.querySelector(
           '.main__photographer-filter-input'
         );
@@ -89,7 +89,7 @@ class PhotographerFilterFormView extends PhotographerPageComponentView {
     this._parentElement.addEventListener('submit', event => {
       event.preventDefault();
 
-      handler(this._parentElement, this._photographerFactory);
+      handler(this._parentElement);
     });
   }
   /**

@@ -13,7 +13,8 @@
     "build:css": "npm-run-all compile:sass prefix:css compress:css delete-temp:css",
     "build:js": "webpack",
     "watch:js": "webpack --watch",
-    "start": "npm-run-all --parallel devserver watch:sass watch:js"
+    "start": "npm-run-all --parallel devserver watch:sass watch:js",
+    "lint": "eslint --max-warnings=0 ."
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "@types/node": "^18.7.16",
     "autoprefixer": "^10.4.8",
     "babel-loader": "^8.2.5",
+    "eslint": "^8.24.0",
     "live-server": "^1.1.0",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^10.0.0",

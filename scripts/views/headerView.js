@@ -1,4 +1,3 @@
-import { LOGO_URL } from '../utils/config';
 import PageComponentView from './pageComponentView';
 
 /**

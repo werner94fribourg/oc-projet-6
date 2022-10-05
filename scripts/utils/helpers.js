@@ -26,14 +26,10 @@ export const timeout = function (seconds) {
  * @author Werner Schmid
  */
 export const AJAX_GET = async url => {
-  try {
-    const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(`${res.status}: ${data.message}`);
-    }
-    return data;
-  } catch (err) {
-    throw err;
+  const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(`${res.status}: ${data.message}`);
   }
+  return data;
 };
